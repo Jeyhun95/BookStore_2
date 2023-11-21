@@ -1,5 +1,5 @@
-from .pages.product_page import ProductPage
-from .pages.basket_page import BasketPage
+from pages.product_page import ProductPage
+from pages.basket_page import BasketPage
 import pytest
 import time
 
@@ -84,8 +84,8 @@ def test_guest_can_see_empty_text_in_basket_opened_from_product_page(browser):
 
 class TestUserAddToBasketFromProductPage:
     @pytest.fixture(scope="function", autouse=True)
-    def setup(self, browser_2):
-        page = ProductPage(browser_2, link)
+    def setup(self, browser):
+        page = ProductPage(browser, link)
         email = str(time.time()) + "@fakemail.org"
         password = str(time.time())
         page.open()
@@ -93,14 +93,14 @@ class TestUserAddToBasketFromProductPage:
         page.register_new_user(email, password)
         page.should_be_authorized_user()
 
-    def test_user_cant_see_success_message(self, browser_2):
-        page = ProductPage(browser_2, link)
+    def test_user_cant_see_success_message(self, browser):
+        page = ProductPage(browser, link)
         page.open()
         page.is_no_success_message_when_adding_to_cart()
 
     @pytest.mark.need_review
-    def test_user_can_add_product_to_basket(self, browser_2):
-        page = ProductPage(browser_2, link)
+    def test_user_can_add_product_to_basket(self, browser):
+        page = ProductPage(browser, link)
         page.open()
         page.add_to_cart()
         page.is_prices_are_equal()

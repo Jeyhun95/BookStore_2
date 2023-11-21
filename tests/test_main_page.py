@@ -1,7 +1,7 @@
 import pytest
 
-from .pages.main_page import MainPage
-from .pages.basket_page import BasketPage
+from pages.main_page import MainPage
+from pages.basket_page import BasketPage
 
 link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209?promo=midsummer"
 
